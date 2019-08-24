@@ -1,8 +1,9 @@
 package hr.acquaint.hotelmanagement.datatransferobjects;
 
 import javax.validation.constraints.*;
+import java.io.Serializable;
 
-public class HotelData {
+public class HotelData implements Serializable {
 
     private long id;
 

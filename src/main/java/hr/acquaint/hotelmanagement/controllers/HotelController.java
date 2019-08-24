@@ -1,7 +1,7 @@
 package hr.acquaint.hotelmanagement.controllers;
 
 import hr.acquaint.hotelmanagement.datatransferobjects.HotelData;
-import hr.acquaint.hotelmanagement.services.HotelService;
+import hr.acquaint.hotelmanagement.services.IHotelService;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +16,9 @@ import java.util.List;
 @Validated
 public class HotelController {
 
-    private final HotelService hotelService;
+    private final IHotelService hotelService;
 
-    public HotelController(HotelService hotelService) {
+    public HotelController(IHotelService hotelService) {
         this.hotelService = hotelService;
     }
 
@@ -35,13 +35,13 @@ public class HotelController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public HotelData createHotel(@Valid @RequestBody HotelData newHotel) {
-        return hotelService.createHotel(newHotel);
+    public HotelData createHotel(@Valid @RequestBody HotelData hotelData) {
+        return hotelService.createHotel(hotelData);
     }
 
     @PutMapping("/{id}")
-    public HotelData updateHotel(@Valid @RequestBody HotelData newHotel, @PathVariable Long id) {
-        return hotelService.updateHotel(newHotel, id);
+    public HotelData updateHotel(@Valid @RequestBody HotelData hotelData, @PathVariable Long id) {
+        return hotelService.updateHotel(hotelData, id);
     }
 
     @DeleteMapping("/{id}")

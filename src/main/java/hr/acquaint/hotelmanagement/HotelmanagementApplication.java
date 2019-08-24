@@ -2,10 +2,11 @@ package hr.acquaint.hotelmanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-@ComponentScan({"hr.acquaint.hotelmanagement.controllers", "hr.acquaint.hotelmanagement.services"})
+@EnableCaching
+//@ComponentScan({"hr.acquaint.hotelmanagement.controllers", "hr.acquaint.hotelmanagement.services"})
 public class HotelmanagementApplication {
 
     public static void main(String[] args) {
