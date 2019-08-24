@@ -2,6 +2,9 @@ package hr.acquaint.hotelmanagement.exceptions;
 
 import java.time.LocalDateTime;
 
+/**
+ * Error response object that is returned to the client when an exception is thrown
+ */
 public class ErrorResponse {
     private LocalDateTime timestamp;
     private int status;

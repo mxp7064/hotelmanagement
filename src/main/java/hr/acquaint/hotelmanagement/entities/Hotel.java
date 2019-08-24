@@ -3,6 +3,9 @@ package hr.acquaint.hotelmanagement.entities;
 
 import javax.persistence.*;
 
+/**
+ * Hotel entity
+ */
 @Entity
 @Table(name = "hotel")
 public class Hotel extends BaseEntity {

@@ -3,6 +3,9 @@ package hr.acquaint.hotelmanagement.datatransferobjects;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 
+/**
+ * Hotel data transfer object which is transmitted as json object via network
+ */
 public class HotelData implements Serializable {
 
     private long id;

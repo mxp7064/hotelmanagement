@@ -1,1 +1,3 @@
-"# hotelmanagement" 
+Hotel management demo application
+
+

@@ -3,6 +3,9 @@ package hr.acquaint.hotelmanagement.entities;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+/**
+ * Base entity class
+ */
 @MappedSuperclass
 public class BaseEntity {
     @Column(name = "active")

@@ -6,6 +6,9 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.util.List;
 
+/**
+ * Class that implements custom hotel queries
+ */
 public class HotelCustomRepositoryImpl implements HotelCustomRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -14,9 +17,16 @@ public class HotelCustomRepositoryImpl implements HotelCustomRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    /**
+     * Implementation of the findAllByPage method that returns hotel objects based on page size and page number
+     *
+     * @param pageSize page size
+     * @param page     page number
+     * @return list of hotel data objects based on page size and page number
+     */
     @Override
-    public List<HotelData> findAllByPage(Long itemsPerPage, Long page) {
-        long offset = (page - 1) * itemsPerPage;
+    public List<HotelData> findAllByPage(Long pageSize, Long page) {
+        long offset = (page - 1) * pageSize;
         String sql = "SELECT hotel_id,\n" +
                 "       name,\n" +
                 "       address,\n" +
@@ -30,10 +40,15 @@ public class HotelCustomRepositoryImpl implements HotelCustomRepository {
                 "LIMIT ? OFFSET ?;";
         return jdbcTemplate.query(
                 sql,
-                new Object[]{itemsPerPage, offset},
+                new Object[]{pageSize, offset},
                 hotelViewModelMapper());
     }
 
+    /**
+     * Map result set to hotel data object
+     *
+     * @return hotel data row mapper
+     */
     private RowMapper<HotelData> hotelViewModelMapper() {
         return (rs, rn) -> {
             HotelData hotelData = new HotelData();
