@@ -1,6 +1,7 @@
 package hr.acquaint.hotelmanagement.controllers;
 
 import hr.acquaint.hotelmanagement.datatransferobjects.HotelData;
+import hr.acquaint.hotelmanagement.datatransferobjects.SearchResult;
 import hr.acquaint.hotelmanagement.services.IHotelService;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.util.List;
 
 /**
  * REST controller that handles hotel CRUD http endpoints
@@ -26,16 +26,18 @@ public class HotelController {
     }
 
     /**
-     * Endpoint to get hotels by page and page size
+     * Endpoint to get hotels by page number, page size and name
      *
      * @param page     page number
      * @param pageSize page size
-     * @return list of hotel data objects
+     * @param name     hotel name
+     * @return hotel data objects search result
      */
     @GetMapping
-    public List<HotelData> getHotelsByPage(@RequestParam @Min(1) Long page,
-                                           @RequestParam(required = false, name = "page_size") @Min(1) @Max(20) Long pageSize) {
-        return hotelService.getHotelsByPage(pageSize, page);
+    public SearchResult<HotelData> getHotels(@RequestParam @Min(1) Long page,
+                                             @RequestParam(required = false, name = "page_size") @Min(1) @Max(20) Long pageSize,
+                                             @RequestParam(required = false, name = "name") String name) {
+        return hotelService.getHotels(page, pageSize, name);
     }
 
     /**

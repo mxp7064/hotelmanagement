@@ -1,14 +1,13 @@
 package hr.acquaint.hotelmanagement.services;
 
 import hr.acquaint.hotelmanagement.datatransferobjects.HotelData;
-
-import java.util.List;
+import hr.acquaint.hotelmanagement.datatransferobjects.SearchResult;
 
 /**
  * Hotel service interface abstraction
  */
 public interface IHotelService {
-    List<HotelData> getHotelsByPage(Long pageSize, Long page);
+    SearchResult<HotelData> getHotels(Long page, Long pageSize, String name);
 
     HotelData getHotelById(Long id);
 

@@ -1,6 +1,7 @@
 package hr.acquaint.hotelmanagement.services;
 
 import hr.acquaint.hotelmanagement.datatransferobjects.HotelData;
+import hr.acquaint.hotelmanagement.datatransferobjects.SearchResult;
 import hr.acquaint.hotelmanagement.entities.Hotel;
 import hr.acquaint.hotelmanagement.exceptions.HotelNotFoundException;
 import hr.acquaint.hotelmanagement.exceptions.InvalidArgumentIdException;
@@ -11,8 +12,6 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Hotel service class that handles hotel business logic and manipulates hotel data
@@ -28,19 +27,23 @@ public class HotelService implements IHotelService {
     }
 
     /**
-     * Get hotels by page and page size
+     * Get hotels by page number, page size and name
      *
-     * @param pageSize page size
      * @param page     page number
-     * @return list of hotel objects based on page number and page size
+     * @param pageSize page size
+     * @param name     hotel name
+     * @return hotel data objects search result
      */
     @Override
-    @Cacheable(value = "allHotelsCache", unless = "#result.size() == 0")
-    public List<HotelData> getHotelsByPage(Long pageSize, Long page) {
+    @Cacheable(value = "allHotelsCache", unless = "#result.data.size() == 0")
+    public SearchResult<HotelData> getHotels(Long page, Long pageSize, String name) {
         if (pageSize == null || pageSize > maxPageSize || pageSize < 1) {
             pageSize = maxPageSize;
         }
-        return hotelRepository.findAllByPage(pageSize, page);
+        if (name == null) {
+            name = "";
+        }
+        return hotelRepository.findAll(page, pageSize, name);
     }
 
     /**

@@ -12,11 +12,14 @@ CREATE TABLE hotel (
 	CONSTRAINT hotel_pk PRIMARY KEY (hotel_id)
 );
 
+CREATE INDEX hotel_lower_name
+    ON hotel (lower(name));
+
 CREATE USER app_user WITH PASSWORD 'app_password';
 GRANT SELECT, UPDATE, INSERT ON TABLE hotel TO app_user;
 GRANT USAGE, SELECT ON SEQUENCE hotel_hotel_id_seq TO app_user;
 
-INSERT INTO hotel (name, address, email, num_rooms, num_available_rooms, num_stars, active) VALUES ('Alaska’s Island Resort', '777 Brockton Avenue', NULL, 250, 20, 5, true);
+INSERT INTO hotel (name, address, email, num_rooms, num_available_rooms, num_stars, active) VALUES ('Alaska Island Resort', '777 Brockton Avenue', NULL, 250, 20, 5, true);
 INSERT INTO hotel (name, address, email, num_rooms, num_available_rooms, num_stars, active) VALUES ('Coast Hotels', '30 Memorial Drive', NULL, 130, 10, 3, true);
 INSERT INTO hotel (name, address, email, num_rooms, num_available_rooms, num_stars, active) VALUES ('Candlewood Suites', '250 Hartford Avenue', 'info@candlewood.com', 200, 20, 4, true);
 INSERT INTO hotel (name, address, email, num_rooms, num_available_rooms, num_stars, active) VALUES ('Hilltop Heaven Resort', '700 Oak Street', NULL, 550, 130, 4, true);
