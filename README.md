@@ -36,10 +36,10 @@ Topics:
 8) Entity vs data transfer objects
 9) Application configuration properties
 10) Docker
-    Dockerfile
-    docker-compose
-    volumes
-    database initialization (schema, index, app user, seeding)
+    - Dockerfile
+    - docker-compose
+    - volumes
+    - database initialization (schema, index, app user, seeding)
     
 Dockerhub link: https://hub.docker.com/r/panca/hotel-management-app
 
